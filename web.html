@@ -1,1 +1,58 @@
-hi 
+<html>
+  <head>
+    <title>Fitcheck</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+     #welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #1a1a1a;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+      }
+
+      .screen-content {
+        text.align: center;
+        font-family: sans-serif;
+      }
+
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="welcome-screen">
+      <div class="screen-content">
+        <h1>Fitcheck</h1>
+        <p>Outfits made easy</p>
+      </div>
+    </div>
+
+    <div id="main-content">
+      <h2>Fitcheck</h2>
+      <p>Outfits made easy</p>
+    </div>
+    <script>
+      setTimeout(() => {
+        const welcomeScreen = document.getElementbyId('welcome-screen')
+          welcomeScreen.classList.add('hidden');
+
+          setTimeout(() => {
+            welcomeScreen.remove();
+          }, 500);
+      }, 3000);
+    </script>
+    
+  </body>
+</html>
