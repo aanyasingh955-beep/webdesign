@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+      @import url('https://googleapis.com');
      #welcome-screen {
       position: fixed;
       top: 0;
@@ -37,7 +38,12 @@
       h1.logo-text {
         font-size: 4rem;
       }
-      p.logo-text: 1.5rem;
+      p.logo-text {
+        font-size: 1.5rem;
+      }
+      button {
+        background-color: blue;
+        color: white;
       }
     </style>
   </head>
@@ -52,17 +58,29 @@
     <div id="main-content">
       <h2>Fitcheck</h2>
       <p>Outfits made easy</p>
+      <button onclick="login()">Log In</button>
+      <button onclick="signup()">Sign up</button>
+
+      <div id="screen" style="margin-top: 20px; font-weight: bold;"></div>
     </div>
     <script>
       setTimeout(() => {
-        const welcomeScreen = document.getElementById('welcome-screen')
+        const welcomeScreen = document.getElementById('welcome-screen');
+        if (welcomeScreen) {
           welcomeScreen.classList.add('hidden');
-
           setTimeout(() => {
             welcomeScreen.remove();
           }, 500);
-      }, 3000);
-    </script>
-    
-  </body>
+        }
+      },3000);
+
+    function login() {
+        document.getElementById("screen").innerHTML = "Logged up Successfully";
+      }
+     function signup() {
+        document.getElementById("screen").innerHTML = "Signed up Successfully";
+      }
+      </script>
+    </body>
+  </html>
 </html>
