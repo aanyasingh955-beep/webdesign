@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@1,400&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
+
       #welcome-screen {
         position: fixed;
         top: 0;
@@ -29,11 +31,6 @@
         font-family: sans-serif;
       }
 
-      .hidden {
-        opacity: 0;
-        pointer-events: none;
-      }
-
       .logo-text {
         font-family: 'Alex Brush', cursive;
         margin: 0;
@@ -45,6 +42,7 @@
         font-size: 1.5rem;
       }
 
+
       #main-content {
         width: 100vw;
         height: 100vh;
@@ -55,8 +53,10 @@
         align-items: center;
         box-sizing: border-box; 
         padding: 40px 20px;
+        position: relative;
+        overflow: hidden;
       }
-      
+
       .main-brand-title {
         color: #E2E5EB;
         font-family: 'Playfair Display', serif;
@@ -68,13 +68,16 @@
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
       }
 
+
       .auth-button-group {
         display: flex;
         flex-direction: column;
         gap: 24px;
         width: 100%;
         max-width: 320px;
+        z-index: 10;
       }
+
 
       .custom-btn {
         background-color: #1A242F;
@@ -91,12 +94,10 @@
         transition: transform 0.1s ease;
       }
 
-
       .custom-btn:active {
         transform: scale(0.98);
       }
 
-  
       .main-brand-tagline {
         color: #E2E5EB;
         font-family: 'Alex Brush', cursive;
@@ -107,12 +108,115 @@
         opacity: 0.9;
       }
 
+
+      .form-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #4A5361; 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 40px 24px;
+        box-sizing: border-box;
+        z-index: 20;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      .form-subheading {
+        color: #E2E5EB;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-decoration: underline;
+        margin-top: 5px;
+        margin-bottom: 25px;
+      }
+
+      .input-container {
+        width: 100%;
+        max-width: 320px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .input-field-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .input-label {
+        color: #B4B9C3;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.1rem;
+        border: none;
+        background-color: #FFFFFF;
+        box-sizing: border-box;
+        outline: none;
+      }
+
+
+      .form-submit-btn {
+        background-color: #1A242F;
+        color: #E3E5EB;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1rem;
+        letter-spacing: 1px;
+        padding: 10px 24px;
+        border: 2px solid #0D131A;
+        border-radius: 20px;
+        cursor: pointer;
+        margin-top: 15px;
+        align-self: center;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
      
+      .form-switch-link {
+        color: #B4B9C3;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.9rem;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: auto;
+        margin-bottom: 10px;
+        align-self: flex-end;
+        max-width: 320px;
+        width: 100%;
+        text-align: right;
+      }
+
+ 
+      .hidden {
+        opacity: 0;
+        pointer-events: none;
+        display: none !important;
+      }
+
       #screen {
         position: absolute;
         top: 20px;
         color: #FFFFFF;
         font-family: sans-serif;
+        z-index: 100;
+        font-weight: bold;
+        background: rgba(0,0,0,0.5);
+        padding: 4px 8px;
+        border-radius: 4px;
       }
     </style>
   </head>
@@ -125,40 +229,109 @@
       </div>
     </div>
 
+
     <div id="main-content">
-  
-      <h2 class="main-brand-title">Fitcheck</h2>
       
-     
-      <div class="auth-button-group">
-        <button class="custom-btn" onclick="login()">Log In</button>
-        <button class="custom-btn" onclick="signup()">Sign up</button>
+
+      <h2 class="main-brand-title">FitCheck</h2>
+      
+
+      <div id="menu-buttons-view" class="auth-button-group">
+        <button class="custom-btn" onclick="showLogin()">Log In</button>
+        <button class="custom-btn" onclick="showSignup()">Sign up</button>
       </div>
+
+
+      <div id="login-screen" class="form-panel hidden">
+        <div class="form-subheading">Log In</div>
+        
+        <div class="input-container">
+          <div class="input-field-wrapper">
+            <label class="input-label">Username:</label>
+            <input type="text" class="form-input">
+          </div>
+          <div class="input-field-wrapper">
+            <label class="input-label">Gmail:</label>
+            <input type="email" class="form-input">
+          </div>
+          <div class="input-field-wrapper">
+            <label class="input-label">Password:</label>
+            <input type="password" class="form-input">
+          </div>
+          <button class="form-submit-btn" onclick="submitLogin()">LOG IN</button>
+        </div>
+
+        <div class="form-switch-link" onclick="showSignup()">SIGN UP</div>
+      </div>
+
+
+      <div id="signup-screen" class="form-panel hidden">
+        <div class="form-subheading">Sign Up</div>
+        
+        <div class="input-container">
+          <div class="input-field-wrapper">
+            <label class="input-label">Username:</label>
+            <input type="text" class="form-input">
+          </div>
+          <div class="input-field-wrapper">
+            <label class="input-label">Gmail:</label>
+            <input type="email" class="form-input">
+          </div>
+          <div class="input-field-wrapper">
+            <label class="input-label">Password:</label>
+            <input type="password" class="form-input">
+          </div>
+          <button class="form-submit-btn" onclick="submitSignup()">SIGN UP</button>
+        </div>
+
+        <div class="form-switch-link" onclick="showLogin()">LOG IN</div>
+      </div>
+
 
       <p class="main-brand-tagline">"Outfits made easy"</p>
       
 
-      <div id="screen"></div>
+      <div id="screen" class="hidden"></div>
     </div>
 
     <script>
+
       setTimeout(() => {
         const welcomeScreen = document.getElementById('welcome-screen');
         if (welcomeScreen) {
-          welcomeScreen.classList.add('hidden');
+          welcomeScreen.style.opacity = '0';
           setTimeout(() => {
             welcomeScreen.remove();
           }, 500);
         }
       }, 3000);
 
-      function login() {
-        document.getElementById("screen").innerHTML = "Logged in Successfully";
+      function showLogin() {
+        document.getElementById("menu-buttons-view").classList.add("hidden");
+        document.getElementById("signup-screen").classList.add("hidden");
+        document.getElementById("login-screen").classList.remove("hidden");
       }
-      function signup() {
-        document.getElementById("screen").innerHTML = "Signed up Successfully";
+
+      function showSignup() {
+        document.getElementById("menu-buttons-view").classList.add("hidden");
+        document.getElementById("login-screen").classList.add("hidden");
+        document.getElementById("signup-screen").classList.remove("hidden");
+      }
+
+
+      function submitLogin() {
+        const alertBox = document.getElementById("screen");
+        alertBox.innerHTML = "Logged in Successfully";
+        alertBox.classList.remove("hidden");
+        setTimeout(() => alertBox.classList.add("hidden"), 3000);
+      }
+
+      function submitSignup() {
+        const alertBox = document.getElementById("screen");
+        alertBox.innerHTML = "Signed up Successfully";
+        alertBox.classList.remove("hidden");
+        setTimeout(() => alertBox.classList.add("hidden"), 3000);
       }
     </script>
   </body>
 </html>
-  </html>
