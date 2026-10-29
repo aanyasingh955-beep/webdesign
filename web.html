@@ -11,6 +11,10 @@
     <link href="https://googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@1,400&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
+      <style>
+      .hidden {
+        display: none !important;
+      }
       #welcome-screen {
         position: fixed;
         top: 0;
@@ -1028,9 +1032,10 @@
       }, 3000);
 
       function showLogin() {
-        document.getElementById("menu-buttons-view").classList.add("hidden");
-        document.getElementById("signup-screen").classList.add("hidden");
-        document.getElementById("login-screen").classList.remove("hidden");
+    document.getElementById("menu-buttons-view").classList.add("hidden");
+    document.getElementById("signup-screen").classList.add("hidden");
+    document.getElementById("recommendations-screen").classList.add("hidden"); 
+    document.getElementById("login-screen").classList.remove("hidden");
       }
 
       function showSignup() {
