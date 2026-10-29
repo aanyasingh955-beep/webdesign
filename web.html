@@ -3,6 +3,9 @@
     <title>Fitcheck</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gsatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@1,400&display=swap" rel="stylesheet">
     <style>
       @import url('https://googleapis.com');
      #welcome-screen {
@@ -41,10 +44,71 @@
       p.logo-text {
         font-size: 1.5rem;
       }
-      button {
-        background-color: blue;
-        color: white;
+
+      main-content {
+        width: 100vw;
+        height: 100vh;
+        background-color: #4A5361;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: borderbox;
       }
+
+      .main-brand-title {
+        color: #E2E5B;
+        font-family: 'Playfiar Display', serif;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 2.5 rem;
+        margin: 0;
+        margin-top: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0, 0.15);
+
+        .auth-button-group {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%
+            max-width: 320px;
+        }
+        .custom-btn {
+          background-color: #1A242F;
+          color: #E3E5EB;
+          font-family: 'Orbitron', sans-serif;
+          font-size: 2rem;
+          padding: 16px;
+          border: 2px solid #0D131A;
+          border-radius: 16px;
+          cursor: pointer;
+          width: 100%
+          text-align: center;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2)
+            transition: transform 0.1s ease;
+        }
+
+        .custom-btn: active {
+          transorm: scale(0.98);
+        }
+
+        .main-brand-tagling {
+          color: #E235EB;
+          font-family: 'Alex Brush', cursive:
+          font-size: 1.6rem;
+          font-weight: 400;
+          margin: 0;
+          margin-bottom: 20px;
+          opacity: 0.9;
+        }
+
+        screen {
+          position: absolute;
+          top: 20px;
+          color: #FFFFFF;
+          font-family: sans-serif
+        }
+        
     </style>
   </head>
   <body>
@@ -56,12 +120,14 @@
     </div>
 
     <div id="main-content">
-      <h2>Fitcheck</h2>
-      <p>Outfits made easy</p>
-      <button onclick="login()">Log In</button>
-      <button onclick="signup()">Sign up</button>
-
-      <div id="screen" style="margin-top: 20px; font-weight: bold;"></div>
+      <h2> class="main-brand-title">Fitcheck</h2>
+      <div class="auth-button-group"
+      <button class="custom-btn" onclick="login()">Log In</button>
+      <button class="custom-btn" onclick="signup()">Sign up</button>
+        </div>
+<p class="main-brand-tagline">"Outfits made easy"</p>
+      
+      <div id="screen"</div>
     </div>
     <script>
       setTimeout(() => {
