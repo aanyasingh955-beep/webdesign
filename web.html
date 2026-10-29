@@ -1195,12 +1195,10 @@
       }
 
     function submitLogin() {
-
   const usernameVal = document.getElementById("login-username").value.trim();
   const gmailVal = document.getElementById("login-gmail").value.trim();
   const passwordVal = document.getElementById("login-password").value.trim();
 
- 
   if (usernameVal === "" || gmailVal === "" || passwordVal === "") {
     alert("Please fill in all fields before continuing!");
     return;
@@ -1215,23 +1213,19 @@
       alertBox.classList.add("hidden");
     }, 3000);
   }
-
   
   showStep("mood-screen");
 }
 
 function submitSignup() {
-
   const usernameVal = document.getElementById("signup-username").value.trim();
   const gmailVal = document.getElementById("signup-gmail").value.trim();
   const passwordVal = document.getElementById("signup-password").value.trim();
-
 
   if (usernameVal === "" || gmailVal === "" || passwordVal === "") {
     alert("Please fill in all fields before continuing!");
     return;
   }
-
 
   const alertBox = document.getElementById("screen");
   if (alertBox) {
@@ -1242,11 +1236,9 @@ function submitSignup() {
       alertBox.classList.add("hidden");
     }, 3000);
   }
-
   
   showLogin();
 }
-
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Signed up Successfully";
         alertBox.classList.remove("hidden");
