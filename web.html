@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Fitcheck</title>
@@ -470,6 +471,195 @@
           font-size: 0.9rem;
         }
       }
+      .recommendations-screen,
+      .final-outfit-screen {
+        gap: 8px;
+      }
+
+      .recommendations-screen {
+        padding: 16px 14px 18px;
+      }
+
+      .recommendations-screen .step-lego,
+      .final-outfit-screen .step-lego {
+        font-size: 2.4rem;
+        margin-bottom: 0;
+      }
+
+      .recommendations-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.15rem;
+        margin: 0 0 2px;
+      }
+
+      .recommendation-category {
+        width: 100%;
+        max-width: 330px;
+        text-align: left;
+      }
+
+      .recommendation-category h3 {
+        color: #C9D8E5;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.15rem;
+        margin: 0 0 5px;
+      }
+
+      .recommendation-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 9px;
+      }
+
+      .recommendation-item {
+        width: 100%;
+        aspect-ratio: 1;
+        padding: 0;
+        overflow: hidden;
+        cursor: pointer;
+        border: 3px solid transparent;
+        border-radius: 10px;
+        background: #FFFFFF;
+      }
+
+      .recommendation-item img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+
+      .recommendation-item.selected {
+        border-color: #B9D9F0;
+        box-shadow: 0 0 0 2px #14232E;
+      }
+
+      .recommendation-item:focus-visible {
+        outline: 3px solid #FFFFFF;
+        outline-offset: 2px;
+      }
+
+      .recommendations-screen .step-continue {
+        flex-shrink: 0;
+        margin-top: auto;
+      }
+
+      .final-outfit-screen {
+        justify-content: flex-start;
+        padding: 20px 16px;
+      }
+
+      .final-outfit-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.2rem;
+        margin: 4px 0;
+      }
+
+      .final-outfit-message {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.8rem;
+        line-height: 1.6;
+        margin: 0 0 8px;
+      }
+
+      #selected-outfit {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        overflow-y: auto;
+        min-height: 0;
+        padding: 4px 0;
+      }
+
+      .outfit-piece {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-shrink: 0;
+      }
+
+      .outfit-piece img {
+        width: 76px;
+        height: 76px;
+        object-fit: cover;
+        background: #FFFFFF;
+        border-radius: 9px;
+      }
+
+      .outfit-piece span {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.7rem;
+        color: #E2E5EB;
+      }
+
+      .final-buttons {
+        width: 100%;
+        max-width: 330px;
+        display: flex;
+        gap: 10px;
+        padding-top: 8px;
+        flex-shrink: 0;
+      }
+
+      .final-buttons button {
+        flex: 1;
+        min-width: 0;
+        padding: 10px 6px;
+        background: #14232E;
+        color: #E2E5EB;
+        border: none;
+        border-radius: 16px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 0.75rem;
+        cursor: pointer;
+      }
+
+      .final-buttons button:active {
+        transform: scale(0.98);
+      }
+
+      @media (max-height: 700px) {
+        .recommendations-screen {
+          padding-top: 8px;
+          padding-bottom: 10px;
+          gap: 5px;
+        }
+
+        .recommendations-screen .step-lego,
+        .final-outfit-screen .step-lego {
+          font-size: 2rem;
+        }
+
+        .recommendation-category h3 {
+          font-size: 0.95rem;
+        }
+
+        .recommendation-grid {
+          gap: 6px;
+        }
+
+        .recommendation-item {
+          border-radius: 7px;
+        }
+
+        .final-outfit-screen {
+          padding-top: 10px;
+          padding-bottom: 10px;
+          gap: 5px;
+        }
+
+        .outfit-piece img {
+          width: 58px;
+          height: 58px;
+        }
+
+        #selected-outfit {
+          gap: 4px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -674,6 +864,159 @@
           BACK
         </button>
       </div>
+      <div id="recommendations-screen"
+           class="step-screen recommendations-screen hidden">
+        
+        <h1 class="step-lego">FitCheck</h1>
+        <h2 class="recommendations-title">Recommendations</h2>
+
+        <section class="recommendation-category" data-category="hair">
+          <h3>Hair</h3>
+          <div class="recommendation-grid">
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('hair', this, 'Hair 1', 'images/hair1.jpg')">
+              <img src="images/hair1.jpg" alt="Hair style 1">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('hair', this, 'Hair 2', 'images/hair2.jpg')">
+              <img src="images/hair2.jpg" alt="Hair style 2">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('hair', this, 'Hair 3', 'images/hair3.jpg')">
+              <img src="images/hair3.jpg" alt="Hair style 3">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('hair', this, 'Hair 4', 'images/hair4.jpg')">
+              <img src="images/hair4.jpg" alt="Hair style 4">
+            </button>
+          </div>
+        </section>
+
+        <section class="recommendation-category" data-category="accessories">
+          <h3>Accessories</h3>
+          <div class="recommendation-grid">
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('accessories', this, 'Accessory 1', 'images/accessory1.jpg')">
+              <img src="images/accessory1.jpg" alt="Accessory 1">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('accessories', this, 'Accessory 2', 'images/accessory2.jpg')">
+              <img src="images/accessory2.jpg" alt="Accessory 2">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('accessories', this, 'Accessory 3', 'images/accessory3.jpg')">
+              <img src="images/accessory3.jpg" alt="Accessory 3">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('accessories', this, 'Accessory 4', 'images/accessory4.jpg')">
+              <img src="images/accessory4.jpg" alt="Accessory 4">
+            </button>
+          </div>
+        </section>
+
+        <section class="recommendation-category" data-category="upper-body">
+          <h3>Upper Body</h3>
+          <div class="recommendation-grid">
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('upper-body', this, 'Top 1', 'images/top1.jpg')">
+              <img src="images/top1.jpg" alt="Top 1">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('upper-body', this, 'Top 2', 'images/top2.jpg')">
+              <img src="images/top2.jpg" alt="Top 2">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('upper-body', this, 'Top 3', 'images/top3.jpg')">
+              <img src="images/top3.jpg" alt="Top 3">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('upper-body', this, 'Top 4', 'images/top4.jpg')">
+              <img src="images/top4.jpg" alt="Top 4">
+            </button>
+          </div>
+        </section>
+
+                <section class="recommendation-category" data-category="lower-body">
+          <h3>Lower Body</h3>
+          <div class="recommendation-grid">
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('lower-body', this, 'Bottom 1', 'images/bottom1.jpg')">
+              <img src="images/bottom1.jpg" alt="Bottom 1">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('lower-body', this, 'Bottom 2', 'images/bottom2.jpg')">
+              <img src="images/bottom2.jpg" alt="Bottom 2">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('lower-body', this, 'Bottom 3', 'images/bottom3.jpg')">
+              <img src="images/bottom3.jpg" alt="Bottom 3">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('lower-body', this, 'Bottom 4', 'images/bottom4.jpg')">
+              <img src="images/bottom4.jpg" alt="Bottom 4">
+            </button>
+          </div>
+        </section>
+
+        <section class="recommendation-category" data-category="footwear">
+          <h3>Footwear</h3>
+          <div class="recommendation-grid">
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('footwear', this, 'Shoes 1', 'images/shoes1.jpg')">
+              <img src="images/shoes1.jpg" alt="Shoes 1">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('footwear', this, 'Shoes 2', 'images/shoes2.jpg')">
+              <img src="images/shoes2.jpg" alt="Shoes 2">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('footwear', this, 'Shoes 3', 'images/shoes3.jpg')">
+              <img src="images/shoes3.jpg" alt="Shoes 3">
+            </button>
+            <button class="recommendation-item"
+                    onclick="selectOutfitItem('footwear', this, 'Shoes 4', 'images/shoes4.jpg')">
+              <img src="images/shoes4.jpg" alt="Shoes 4">
+            </button>
+          </div>
+        </section>
+
+        <button class="step-continue"
+                onclick="showFinalOutfit()">
+          CONTINUE
+        </button>
+      </div>
+
+      <div id="final-outfit-screen"
+           class="step-screen final-outfit-screen hidden">
+
+        <h1 class="step-lego">FitCheck</h1>
+
+        <h2 class="final-outfit-title">
+          Your outfit is complete~!
+        </h2>
+
+        <p class="final-outfit-message">
+          Click on 'Keep Styling' to keep on editing!
+        </p>
+
+        <div id="selected-outfit">
+          <div class="outfit-piece" id="final-hair"></div>
+          <div class="outfit-piece" id="final-accessories"></div>
+          <div class="outfit-piece" id="final-upper-body"></div>
+          <div class="outfit-piece" id="final-lower-body"></div>
+          <div class="outfit-piece" id="final-footwear"></div>
+        </div>
+
+        <div class="final-buttons">
+          <button onclick="keepStyling()">
+            Keep Styling
+          </button>
+
+          <button onclick="goBackHome()">
+            Go back to home
+          </button>
+        </div>
+      </div>
     </div>
     <script>
       setTimeout(() => {
@@ -701,15 +1044,120 @@
       let selectedMood = "";
       let selectedStyle = "";
       let selectedEvent = "";
+      const selectedOutfit = {
+        hair: null,
+        accessories: null,
+        "upper-body": null,
+        "lower-body": null,
+        footwear: null
+      };
+      
+      function selectOutfitItem(category, button, name, imagePath) {
+        const categorySection = button.closest(".recommendation-category");
 
+        categorySection.querySelectorAll(".recommendation-item")
+          .forEach(function(item) {
+            item.classList.remove("selected");
+          });
+
+        button.classList.add("selected");
+
+        selectedOutfit[category] = {
+          name: name,
+          image: imagePath
+        };
+      }
+      
+      function showFinalOutfit() {
+        const categories = [
+          { key: "hair", label: "Hair", target: "final-hair" },
+          {
+            key: "accessories",
+            label: "Accessories",
+            target: "final-accessories"
+          },
+          {
+            key: "upper-body",
+            label: "Upper Body",
+            target: "final-upper-body"
+          },
+          {
+            key: "lower-body",
+            label: "Lower Body",
+            target: "final-lower-body"
+          },
+          {
+            key: "footwear",
+            label: "Footwear",
+            target: "final-footwear"
+          }
+        ];
+
+        const missingCategory = categories.find(function(category) {
+          return !selectedOutfit[category.key];
+        });
+      
+        if (missingCategory) {
+          alert("Please choose one item for " + missingCategory.label + "!");
+          return;
+        }
+
+        categories.forEach(function(category) {
+          const piece = selectedOutfit[category.key];
+          const container = document.getElementById(category.target);
+      
+          container.replaceChildren();
+      
+          const image = document.createElement("img");
+          image.src = piece.image;
+          image.alt = piece.name;
+      
+          const label = document.createElement("span");
+          label.textContent = category.label;
+      
+          container.appendChild(image);
+          container.appendChild(label);
+        });
+      
+        showStep("final-outfit-screen");
+      }
+      
+      function keepStyling() {
+        showStep("recommendations-screen");
+      }
+
+      function goBackHome() {
+        const screens = [
+          "login-screen",
+          "signup-screen",
+          "mood-screen",
+          "style-screen",
+          "event-screen",
+          "recommendations-screen",
+          "final-outfit-screen"
+        ];
+      
+        screens.forEach(function(id) {
+          document.getElementById(id).classList.add("hidden");
+        });
+      
+        document.getElementById("menu-buttons-view").classList.remove("hidden");
+      }
       function showStep(screenId) {
-        document.getElementById("login-screen").classList.add("hidden");
-        document.getElementById("signup-screen").classList.add("hidden");
+        const screens = [
+          "login-screen",
+          "signup-screen",
+          "mood-screen",
+          "style-screen",
+          "event-screen",
+          "recommendations-screen",
+          "final-outfit-screen"
+        ];
 
-        document.getElementById("mood-screen").classList.add("hidden");
-        document.getElementById("style-screen").classList.add("hidden");
-        
-        document.getElementById("event-screen").classList.add("hidden");
+        screens.forEach(function(id) {
+          document.getElementById(id).classList.add("hidden");
+        });
+
         document.getElementById(screenId).classList.remove("hidden");
       }
 
@@ -823,19 +1271,16 @@
         showStep("event-screen");
       }
 
-        function finishSelections() {
-          if (selectedEvent === "") {
-            alert("Please Choose an event you're going to!");
-            return;
-          }
-
-          alert(
-            "Your Fitcheck choices:\n\n" +
-            "Mood: " + selectedMood + "\n" +
-            "Clothing style: " + selectedStyle + "\n" +
-            "Event: " + selectedEvent
-          );
+        
+      function finishSelections() {
+        if (selectedEvent === "") {
+          alert("Please Choose an event you're going to!");
+          return;
         }
+      
+        showStep("recommendations-screen");
+      }
+
     </script>
   </body>
 </html>
