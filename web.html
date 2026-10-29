@@ -1194,26 +1194,58 @@
         return true;
       }
 
-      function submitLogin() {
-        if (!validateAuthFields("login-screen")) {
-          return;
-        }
+    function submitLogin() {
 
-        const alertBox = document.getElementById("screen");
-        alertBox.innerHTML = "Logged in Successfully";
-        alertBox.classList.remove("hidden");
+  const usernameVal = document.getElementById("login-username").value.trim();
+  const gmailVal = document.getElementById("login-gmail").value.trim();
+  const passwordVal = document.getElementById("login-password").value.trim();
 
-        showStep("mood-screen");
+ 
+  if (usernameVal === "" || gmailVal === "" || passwordVal === "") {
+    alert("Please fill in all fields before continuing!");
+    return;
+  }
 
-        setTimeout(() => {
-          alertBox.classList.add("hidden");
-        }, 3000);
-      }
+  const alertBox = document.getElementById("screen");
+  if (alertBox) {
+    alertBox.innerHTML = "Logged in Successfully";
+    alertBox.classList.remove("hidden");
+    
+    setTimeout(() => {
+      alertBox.classList.add("hidden");
+    }, 3000);
+  }
 
-      function submitSignup() {
-        if (!validateAuthFields("signup-screen")) {
-          return;
-        }
+  
+  showStep("mood-screen");
+}
+
+function submitSignup() {
+
+  const usernameVal = document.getElementById("signup-username").value.trim();
+  const gmailVal = document.getElementById("signup-gmail").value.trim();
+  const passwordVal = document.getElementById("signup-password").value.trim();
+
+
+  if (usernameVal === "" || gmailVal === "" || passwordVal === "") {
+    alert("Please fill in all fields before continuing!");
+    return;
+  }
+
+
+  const alertBox = document.getElementById("screen");
+  if (alertBox) {
+    alertBox.innerHTML = "Account Created Successfully!";
+    alertBox.classList.remove("hidden");
+    
+    setTimeout(() => {
+      alertBox.classList.add("hidden");
+    }, 3000);
+  }
+
+  
+  showLogin();
+}
 
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Signed up Successfully";
