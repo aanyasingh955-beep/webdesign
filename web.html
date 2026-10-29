@@ -4,17 +4,16 @@
     <title>Fitcheck</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
 
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@1,400&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <style>
-      <style>
       .hidden {
         display: none !important;
       }
+
       #welcome-screen {
         position: fixed;
         top: 0;
@@ -39,13 +38,14 @@
         font-family: 'Alex Brush', cursive;
         margin: 0;
       }
+
       h1.logo-text {
         font-size: 4rem;
       }
+
       p.logo-text {
         font-size: 1.5rem;
       }
-
 
       #main-content {
         width: 100vw;
@@ -55,7 +55,7 @@
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        box-sizing: border-box; 
+        box-sizing: border-box;
         padding: 40px 20px;
         position: relative;
         overflow: hidden;
@@ -72,7 +72,6 @@
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
       }
 
-
       .auth-button-group {
         display: flex;
         flex-direction: column;
@@ -81,7 +80,6 @@
         max-width: 320px;
         z-index: 10;
       }
-
 
       .custom-btn {
         background-color: #1A242F;
@@ -112,14 +110,13 @@
         opacity: 0.9;
       }
 
-
       .form-panel {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: #4A5361; 
+        background-color: #4A5361;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -173,7 +170,6 @@
         outline: none;
       }
 
-
       .form-submit-btn {
         background-color: #1A242F;
         color: #E3E5EB;
@@ -189,7 +185,6 @@
         box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.15);
       }
 
-     
       .form-switch-link {
         color: #B4B9C3;
         font-family: 'Orbitron', sans-serif;
@@ -204,7 +199,6 @@
         text-align: right;
       }
 
- 
       .hidden {
         opacity: 0;
         pointer-events: none;
@@ -218,11 +212,11 @@
         font-family: sans-serif;
         z-index: 100;
         font-weight: bold;
-        background: rgba(0,0,0,0.5);
+        background: rgba(0, 0, 0, 0.5);
         padding: 4px 8px;
         border-radius: 4px;
       }
-      
+
       .step-screen {
         position: absolute;
         inset: 0;
@@ -237,6 +231,7 @@
         overflow-y: auto;
         text-align: center;
       }
+
       .step-lego {
         font-family: 'Alex Brush', cursive;
         font-size: 2.7rem;
@@ -286,7 +281,7 @@
 
       .choice-card.selected {
         border-color: #E2E5EB;
-        background: rgba(255,255,255,0.10);
+        background: rgba(255, 255, 255, 0.10);
       }
 
       .mood-face {
@@ -303,18 +298,23 @@
         position: relative;
       }
 
+      .mood-face.bad,
+      .mood-face.meh {
+        clip-path: polygon(
+          50% 0%, 60% 12%, 73% 4%, 78% 18%, 93% 17%,
+          91% 32%, 100% 42%, 90% 52%, 97% 66%, 82% 72%,
+          83% 88%, 67% 87%, 57% 100%, 47% 89%, 33% 96%,
+          27% 82%, 12% 83%, 15% 67%, 0 59%, 10% 47%,
+          3% 34%, 18% 29%, 15% 13%, 31% 16%, 40% 3%
+        );
+      }
+
       .mood-face.bad {
         background-color: #A98BE9;
-        clip-path: polygon(
-          50% 0%, 60% 12%, 73% 4%, 78% 18%, 93% 17%, 91% 32%, 100% 42%, 90% 52%, 97% 66%, 82% 72%, 83% 88%, 67% 87%, 57% 100%, 47% 89%, 33% 96%, 27% 82%, 12% 83%, 15% 67%, 0 59%, 10% 47%, 3% 34%, 18% 29%, 15% 13%, 31% 16%, 40% 3%
-          );
       }
 
       .mood-face.meh {
         background-color: #A8AED4;
-        clip-path: polygon(
-          50% 0%, 60% 12%, 73% 4%, 78% 18%, 93% 17%, 91% 32%, 100% 42%, 90% 52%, 97% 66%, 82% 72%, 83% 88%, 67% 87%, 57% 100%, 47% 89%, 33% 96%, 27% 82%, 12% 83%, 15% 67%, 0 59%, 10% 47%, 3% 34%, 18% 29%, 15% 13%, 31% 16%, 40% 3%
-          );
       }
 
       .mood-face.okay {
@@ -408,33 +408,7 @@
         margin: 0 auto;
       }
 
-      .style-button {
-        width: 100%;
-        padding: 9px 12px;
-        background-color: #718BA6;
-        color: #F1F5F9;
-        border: 2px solid transparent;
-        border-radius: 18px;
-        font-family: 'Orbitron', sans-serif;
-        font-size: 1.05rem;
-        cursor: pointer;
-        transition: background-color 0.15s, border-color 0.15s;
-      }
-
-      .style-button.selected {
-        background-color: #8CA4BD;
-        border-color: #E2E5EB;
-      }
-
-      .event-options {
-        width: 100%;
-        max-width: 270px;
-        display: flex;
-        flex-direction: column;
-        gap: 11px;
-        margin: 0 auto;
-      }
-
+      .style-button,
       .event-button {
         width: 100%;
         padding: 9px 12px;
@@ -448,9 +422,19 @@
         transition: background-color 0.15s, border-color 0.15s;
       }
 
+      .style-button.selected,
       .event-button.selected {
         background-color: #8CA4BD;
         border-color: #E2E5EB;
+      }
+
+      .event-options {
+        width: 100%;
+        max-width: 270px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        margin: 0 auto;
       }
 
       @media (max-width: 360px) {
@@ -475,6 +459,7 @@
           font-size: 0.9rem;
         }
       }
+
       .recommendations-screen,
       .final-outfit-screen {
         gap: 8px;
@@ -666,6 +651,7 @@
       }
     </style>
   </head>
+
   <body>
     <div id="welcome-screen">
       <div class="screen-content">
@@ -673,225 +659,165 @@
         <p class="logo-text">Outfits made easy</p>
       </div>
     </div>
+
     <div id="main-content">
       <h2 class="main-brand-title">FitCheck</h2>
+
       <div id="menu-buttons-view" class="auth-button-group">
         <button class="custom-btn" onclick="showLogin()">Log In</button>
         <button class="custom-btn" onclick="showSignup()">Sign up</button>
       </div>
+
       <div id="login-screen" class="form-panel hidden">
         <div class="form-subheading">Log In</div>
+
         <div class="input-container">
           <div class="input-field-wrapper">
-            <label class="input-label">Username:</label>
-            <input type="text" class="form-input">
+            <label class="input-label" for="login-username">Username:</label>
+            <input type="text" id="login-username" class="form-input" autocomplete="username">
           </div>
+
           <div class="input-field-wrapper">
-            <label class="input-label">Gmail:</label>
-            <input type="email" class="form-input">
+            <label class="input-label" for="login-gmail">Gmail:</label>
+            <input type="email" id="login-gmail" class="form-input" autocomplete="email">
           </div>
+
           <div class="input-field-wrapper">
-            <label class="input-label">Password:</label>
-            <input type="password" class="form-input">
+            <label class="input-label" for="login-password">Password:</label>
+            <input type="password" id="login-password" class="form-input" autocomplete="current-password">
           </div>
+
           <button class="form-submit-btn" onclick="submitLogin()">LOG IN</button>
           <div class="form-switch-link" onclick="showSignup()">SIGN UP</div>
+        </div>
       </div>
 
-
       <div id="signup-screen" class="form-panel hidden">
-  <div class="form-subheading">Sign Up</div>
-  
-  <div class="input-container">
-    <div class="input-field-wrapper">
-      <label class="input-label">Username:</label>
-    
-      <input type="text" id="signup-username" class="form-input">
-    </div>
-    <div class="input-field-wrapper">
-      <label class="input-label">Gmail:</label>
-  
-      <input type="email" id="signup-gmail" class="form-input">
-    </div>
-    <div class="input-field-wrapper">
-      <label class="input-label">Password:</label>
-   
-      <input type="password" id="signup-password" class="form-input">
-    </div>
-    <button class="form-submit-btn" onclick="submitSignup()">SIGN UP</button>
-  </div>
+        <div class="form-subheading">Sign Up</div>
 
-  <div class="form-switch-link" onclick="showLogin()">LOG IN</div>
-</div>
+        <div class="input-container">
+          <div class="input-field-wrapper">
+            <label class="input-label" for="signup-username">Username:</label>
+            <input type="text" id="signup-username" class="form-input" autocomplete="username">
+          </div>
 
+          <div class="input-field-wrapper">
+            <label class="input-label" for="signup-gmail">Gmail:</label>
+            <input type="email" id="signup-gmail" class="form-input" autocomplete="email">
+          </div>
+
+          <div class="input-field-wrapper">
+            <label class="input-label" for="signup-password">Password:</label>
+            <input type="password" id="signup-password" class="form-input" autocomplete="new-password">
+          </div>
+
+          <button class="form-submit-btn" onclick="submitSignup()">SIGN UP</button>
+        </div>
+
+        <div class="form-switch-link" onclick="showLogin()">LOG IN</div>
+      </div>
 
       <p class="main-brand-tagline">"Outfits made easy"</p>
-      
 
       <div id="screen" class="hidden"></div>
+
       <div id="mood-screen" class="step-screen hidden">
         <h1 class="step-lego">FitCheck</h1>
-        <h2 class="step-heading">
-          How are you feeling today?
-        </h2>
+        <h2 class="step-heading">How are you feeling today?</h2>
+
         <div class="choice-grid">
-          <button class="choice-card"
-                  onclick="selectChoice('mood', this, 'Bad')">
+          <button class="choice-card" onclick="selectChoice('mood', this, 'Bad')">
             <div class="mood-face bad">
-              <div class="eyes">
-                <span></span><span></span>
-              </div>
+              <div class="eyes"><span></span><span></span></div>
               <div class="mouth"></div>
             </div>
             <span>Bad</span>
           </button>
 
-          <button class="choice-card"
-                  onclick="selectChoice('mood', this, 'Meh')">
+          <button class="choice-card" onclick="selectChoice('mood', this, 'Meh')">
             <div class="mood-face meh">
-              <div class="eyes">
-                <span></span><span></span>
-              </div>
+              <div class="eyes"><span></span><span></span></div>
               <div class="mouth"></div>
             </div>
             <span>Meh</span>
           </button>
 
-          <button class="choice-card"
-                  onclick="selectChoice('mood', this, 'Okay')">
+          <button class="choice-card" onclick="selectChoice('mood', this, 'Okay')">
             <div class="mood-face okay">
-              <div class ="eyes">
-                <span></span><span></span>
-              </div>
+              <div class="eyes"><span></span><span></span></div>
               <div class="mouth"></div>
             </div>
             <span>Okay</span>
           </button>
 
-          <button class="choice-card"
-                  onclick="selectChoice('mood', this, 'Good')">
+          <button class="choice-card" onclick="selectChoice('mood', this, 'Good')">
             <div class="mood-face good">
-              <div class="eyes">
-                <span></span><span></span>
-              </div>
+              <div class="eyes"><span></span><span></span></div>
               <div class="mouth"></div>
             </div>
             <span>Good</span>
           </button>
 
-          <button class="choice-card"
-                  onclick="selectChoice('mood', this, 'Great')">
+          <button class="choice-card" onclick="selectChoice('mood', this, 'Great')">
             <div class="mood-face great">
-              <div class="eyes">
-                <span></span><span></span>
-              </div>
+              <div class="eyes"><span></span><span></span></div>
               <div class="mouth"></div>
             </div>
             <span>Great</span>
           </button>
         </div>
 
-        <button class="step-continue"
-                onclick="continueToStyle()">
-          CONTINUE
-        </button>
+        <button class="step-continue" onclick="continueToStyle()">CONTINUE</button>
       </div>
 
       <div id="style-screen" class="step-screen hidden">
         <h1 class="step-lego">FitCheck</h1>
-        <h2 class="step-heading">
-          What type of clothing would you like?
-        </h2>
+        <h2 class="step-heading">What type of clothing would you like?</h2>
 
         <div class="style-options">
-          <button class="style-button"
-                  onclick="selectChoice('style', this, 'Masculine')">
-            Masculine
-          </button>
-          <button class="style-button"
-                  onclick="selectChoice('style', this, 'Androgynous')">
-            Androgynous
-          </button>
-          <button class="style-button"
-                  onclick="selectChoice('style', this, 'Feminine')">
-            Feminine
-          </button>
-          <button class="style-button"
-                  onclick="selectChoice('style', this, 'Any')">
-            Any
-          </button>
+          <button class="style-button" onclick="selectChoice('style', this, 'Masculine')">Masculine</button>
+          <button class="style-button" onclick="selectChoice('style', this, 'Androgynous')">Androgynous</button>
+          <button class="style-button" onclick="selectChoice('style', this, 'Feminine')">Feminine</button>
+          <button class="style-button" onclick="selectChoice('style', this, 'Any')">Any</button>
         </div>
-        <button class="step-continue"
-                onclick="continueToEvent()">
-          CONTINUE
-        </button>
 
-        <button class="step-continue"
-                style="margin-top: 12px;"
-                onclick="showStep('mood-screen')">
-          BACK
-        </button>
+        <button class="step-continue" onclick="continueToEvent()">CONTINUE</button>
+        <button class="step-continue" style="margin-top: 12px;" onclick="showStep('mood-screen')">BACK</button>
       </div>
+
       <div id="event-screen" class="step-screen hidden">
         <h1 class="step-lego">Fitcheck</h1>
-        <h2 class="step-heading">
-          What event are you going to?
-        </h2>
+        <h2 class="step-heading">What event are you going to?</h2>
+
         <div class="event-options">
-          <button class="event-button"
-                  onclick="selectChoice('event', this, 'Funeral')">
-            Funeral
-          </button>
-          <button class="event-button"
-                  onclick="selectChoice('event', this, 'Wedding')">
-            Wedding
-          </button>
-          <button class="event-button"
-                  onclick="selectChoice('event', this, 'Casual meetup')">
-            Casual meetup
-          </button>
-          <button class="event-button"
-                  onclick="selectChoice('event', this, 'Office meeting')">
-            Office meeting
-          </button>
-          <button class="event-button"
-                  onclick="selectChoice('event', this, 'Date')">
-            Date
-          </button>
+          <button class="event-button" onclick="selectChoice('event', this, 'Funeral')">Funeral</button>
+          <button class="event-button" onclick="selectChoice('event', this, 'Wedding')">Wedding</button>
+          <button class="event-button" onclick="selectChoice('event', this, 'Casual meetup')">Casual meetup</button>
+          <button class="event-button" onclick="selectChoice('event', this, 'Office meeting')">Office meeting</button>
+          <button class="event-button" onclick="selectChoice('event', this, 'Date')">Date</button>
         </div>
-        <button class="step-continue"
-                onclick="finishSelections()">
-          CONTINUE
-        </button>
-        <button class="step-continue"
-                style="margin-top: 12px;"
-                onclick="showStep('style-screen')">
-          BACK
-        </button>
+
+        <button class="step-continue" onclick="finishSelections()">CONTINUE</button>
+        <button class="step-continue" style="margin-top: 12px;" onclick="showStep('style-screen')">BACK</button>
       </div>
-      <div id="recommendations-screen"
-           class="step-screen recommendations-screen">
-        
+
+      <div id="recommendations-screen" class="step-screen recommendations-screen hidden">
         <h1 class="step-lego">FitCheck</h1>
         <h2 class="recommendations-title">Recommendations</h2>
 
         <section class="recommendation-category" data-category="hair">
           <h3>Hair</h3>
           <div class="recommendation-grid">
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('hair', this, 'Hair 1', 'hair1.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('hair', this, 'Hair 1', 'hair1.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/hair1.jpg" alt="Hairstyle option 1">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('hair', this, 'Hair 2', 'hair2.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('hair', this, 'Hair 2', 'hair2.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/hair2.jpg" alt="Hairstyle option 2">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('hair', this, 'Hair 3', 'hair3.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('hair', this, 'Hair 3', 'hair3.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/hair3.jpg" alt="Hairstyle option 3">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('hair', this, 'Hair 4', 'hair4.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('hair', this, 'Hair 4', 'hair4.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/hair4.jpg" alt="Hairstyle option 4">
             </button>
           </div>
@@ -900,20 +826,16 @@
         <section class="recommendation-category" data-category="accessories">
           <h3>Accessories</h3>
           <div class="recommendation-grid">
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('accessories', this, 'Accessory 1', 'accessories1.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('accessories', this, 'Accessory 1', 'accessories1.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/accessories1.jpg" alt="Accessory option 1">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('accessories', this, 'Accessory 2', 'accessories2.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('accessories', this, 'Accessory 2', 'accessories2.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/accessories2.jpg" alt="Accessory option 2">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('accessories', this, 'Accessory 3', 'accessories3.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('accessories', this, 'Accessory 3', 'accessories3.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/accessories3.jpg" alt="Accessory option 3">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('accessories', this, 'Accessory 4', 'accessories4.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('accessories', this, 'Accessory 4', 'accessories4.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/accessories4.jpg" alt="Accessory option 4">
             </button>
           </div>
@@ -922,42 +844,34 @@
         <section class="recommendation-category" data-category="upper-body">
           <h3>Upper Body</h3>
           <div class="recommendation-grid">
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('upper-body', this, 'Top 1', 'tops1.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('upper-body', this, 'Top 1', 'tops1.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/tops1.jpg" alt="Top option 1">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('upper-body', this, 'Top 2', 'tops2.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('upper-body', this, 'Top 2', 'tops2.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/tops2.jpg" alt="Top option 2">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('upper-body', this, 'Top 3', 'tops3.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('upper-body', this, 'Top 3', 'tops3.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/tops3.jpg" alt="Top option 3">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('upper-body', this, 'Top 4', 'tops4.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('upper-body', this, 'Top 4', 'tops4.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/tops4.jpg" alt="Top option 4">
             </button>
           </div>
         </section>
 
-                <section class="recommendation-category" data-category="lower-body">
+        <section class="recommendation-category" data-category="lower-body">
           <h3>Lower Body</h3>
           <div class="recommendation-grid">
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('lower-body', this, 'Bottom 1', 'bottom1.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('lower-body', this, 'Bottom 1', 'bottom1.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/bottom1.jpg" alt="Bottom option 1">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('lower-body', this, 'Bottom 2', 'bottom2.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('lower-body', this, 'Bottom 2', 'bottom2.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/bottom2.jpg" alt="Bottom option 2">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('lower-body', this, 'Bottom 3', 'bottom3.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('lower-body', this, 'Bottom 3', 'bottom3.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/bottom3.jpg" alt="Bottom option 3">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('lower-body', this, 'Bottom 4', 'bottom4.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('lower-body', this, 'Bottom 4', 'bottom4.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/bottom4.jpg" alt="Bottom option 4">
             </button>
           </div>
@@ -966,43 +880,28 @@
         <section class="recommendation-category" data-category="footwear">
           <h3>Footwear</h3>
           <div class="recommendation-grid">
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('footwear', this, 'Shoes 1', 'shoes1.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('footwear', this, 'Shoes 1', 'shoes1.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/shoes1.jpg" alt="Shoes option 1">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('footwear', this, 'Shoes 2', 'shoes2.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('footwear', this, 'Shoes 2', 'shoes2.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/shoes2.jpg" alt="Shoes option 2">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('footwear', this, 'Shoes 3', 'shoes3.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('footwear', this, 'Shoes 3', 'shoes3.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/shoes3.jpg" alt="Shoes option 3">
             </button>
-            <button class="recommendation-item"
-                    onclick="selectOutfitItem('footwear', this, 'Shoes 4', 'shoes4.jpg')">
+            <button class="recommendation-item" onclick="selectOutfitItem('footwear', this, 'Shoes 4', 'shoes4.jpg')">
               <img src="https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/shoes4.jpg" alt="Shoes option 4">
             </button>
           </div>
         </section>
 
-        <button class="step-continue"
-                onclick="showFinalOutfit()">
-          CONTINUE
-        </button>
+        <button class="step-continue" onclick="showFinalOutfit()">CONTINUE</button>
       </div>
 
-      <div id="final-outfit-screen"
-           class="step-screen final-outfit-screen hidden">
-
+      <div id="final-outfit-screen" class="step-screen final-outfit-screen hidden">
         <h1 class="step-lego">FitCheck</h1>
-
-        <h2 class="final-outfit-title">
-          Your outfit is complete~!
-        </h2>
-
-        <p class="final-outfit-message">
-          Click on 'Keep Styling' to keep on editing!
-        </p>
+        <h2 class="final-outfit-title">Your outfit is complete~!</h2>
+        <p class="final-outfit-message">Click on 'Keep Styling' to keep on editing!</p>
 
         <div id="selected-outfit">
           <div class="outfit-piece" id="final-hair"></div>
@@ -1013,43 +912,61 @@
         </div>
 
         <div class="final-buttons">
-          <button onclick="keepStyling()">
-            Keep Styling
-          </button>
-
-          <button onclick="goBackHome()">
-            Go back to home
-          </button>
+          <button onclick="keepStyling()">Keep Styling</button>
+          <button onclick="goBackHome()">Go back to home</button>
         </div>
       </div>
     </div>
+
     <script>
       setTimeout(() => {
         const welcomeScreen = document.getElementById('welcome-screen');
+
         if (welcomeScreen) {
           welcomeScreen.style.opacity = '0';
+
           setTimeout(() => {
             welcomeScreen.remove();
           }, 500);
         }
       }, 3000);
- 
+
+      const allScreenIds = [
+        "login-screen",
+        "signup-screen",
+        "mood-screen",
+        "style-screen",
+        "event-screen",
+        "recommendations-screen",
+        "final-outfit-screen"
+      ];
+
+      function hideAllScreens() {
+        allScreenIds.forEach(function (id) {
+          const element = document.getElementById(id);
+
+          if (element) {
+            element.classList.add("hidden");
+          }
+        });
+      }
+
       function showLogin() {
-    document.getElementById("menu-buttons-view").classList.add("hidden");
-    document.getElementById("signup-screen").classList.add("hidden");
-    document.getElementById("recommendations-screen").classList.add("hidden"); 
-    document.getElementById("login-screen").classList.remove("hidden");
+        hideAllScreens();
+        document.getElementById("menu-buttons-view").classList.add("hidden");
+        document.getElementById("login-screen").classList.remove("hidden");
       }
 
       function showSignup() {
+        hideAllScreens();
         document.getElementById("menu-buttons-view").classList.add("hidden");
-        document.getElementById("login-screen").classList.add("hidden");
         document.getElementById("signup-screen").classList.remove("hidden");
       }
 
       let selectedMood = "";
       let selectedStyle = "";
       let selectedEvent = "";
+
       const selectedOutfit = {
         hair: null,
         accessories: null,
@@ -1057,12 +974,12 @@
         "lower-body": null,
         footwear: null
       };
-      
+
       function selectOutfitItem(category, button, name, imagePath) {
         const categorySection = button.closest(".recommendation-category");
 
         categorySection.querySelectorAll(".recommendation-item")
-          .forEach(function(item) {
+          .forEach(function (item) {
             item.classList.remove("selected");
           });
 
@@ -1073,100 +990,67 @@
           image: imagePath
         };
       }
-      
+
       function showFinalOutfit() {
         const categories = [
           { key: "hair", label: "Hair", target: "final-hair" },
-          {
-            key: "accessories",
-            label: "Accessories",
-            target: "final-accessories"
-          },
-          {
-            key: "upper-body",
-            label: "Upper Body",
-            target: "final-upper-body"
-          },
-          {
-            key: "lower-body",
-            label: "Lower Body",
-            target: "final-lower-body"
-          },
-          {
-            key: "footwear",
-            label: "Footwear",
-            target: "final-footwear"
-          }
+          { key: "accessories", label: "Accessories", target: "final-accessories" },
+          { key: "upper-body", label: "Upper Body", target: "final-upper-body" },
+          { key: "lower-body", label: "Lower Body", target: "final-lower-body" },
+          { key: "footwear", label: "Footwear", target: "final-footwear" }
         ];
 
-        const missingCategory = categories.find(function(category) {
+        const missingCategory = categories.find(function (category) {
           return !selectedOutfit[category.key];
         });
-      
+
         if (missingCategory) {
           alert("Please choose one item for " + missingCategory.label + "!");
           return;
         }
 
-        categories.forEach(function(category) {
+        categories.forEach(function (category) {
           const piece = selectedOutfit[category.key];
-          console.log("Selected item:", category.key, piece);
-          console.log("Image filename:", piece.image);
           const container = document.getElementById(category.target);
-      
+
           container.replaceChildren();
-      
+
           const image = document.createElement("img");
-          image.src = "https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/" + piece.image;
+          image.src =
+            "https://raw.githubusercontent.com/aanyasingh955-beep/webdesign/main/" +
+            piece.image;
           image.alt = piece.name;
-      
+
           const label = document.createElement("span");
           label.textContent = category.label;
-      
+
           container.appendChild(image);
           container.appendChild(label);
         });
-      
+
         showStep("final-outfit-screen");
       }
-      
+
       function keepStyling() {
         showStep("recommendations-screen");
       }
 
       function goBackHome() {
-        const screens = [
-          "login-screen",
-          "signup-screen",
-          "mood-screen",
-          "style-screen",
-          "event-screen",
-          "recommendations-screen",
-          "final-outfit-screen"
-        ];
-      
-        screens.forEach(function(id) {
-          document.getElementById(id).classList.add("hidden");
-        });
-      
+        hideAllScreens();
         document.getElementById("menu-buttons-view").classList.remove("hidden");
+        document.getElementById("screen").classList.add("hidden");
       }
+
       function showStep(screenId) {
-        const screens = [
-          "login-screen",
-          "signup-screen",
-          "mood-screen",
-          "style-screen",
-          "event-screen",
-          "recommendations-screen",
-          "final-outfit-screen"
-        ];
+        hideAllScreens();
 
-        screens.forEach(function(id) {
-          document.getElementById(id).classList.add("hidden");
-        });
+        const target = document.getElementById(screenId);
 
-        document.getElementById(screenId).classList.remove("hidden");
+        if (target) {
+          target.classList.remove("hidden");
+        } else {
+          console.error("Unknown screen:", screenId);
+        }
       }
 
       function validateAuthFields(screenId) {
@@ -1181,10 +1065,7 @@
             return false;
           }
 
-          if (
-            input.type === "email" &&
-            !input.checkValidity()
-          ) {
+          if (input.type === "email" && !input.checkValidity()) {
             alert("Please enter a valid email address!");
             input.focus();
             return false;
@@ -1194,91 +1075,51 @@
         return true;
       }
 
-    function submitLogin() {
-  const usernameVal = document.getElementById("login-username").value.trim();
-  const gmailVal = document.getElementById("login-gmail").value.trim();
-  const passwordVal = document.getElementById("login-password").value.trim();
+      function showStatus(message) {
+        const alertBox = document.getElementById("screen");
 
-  if (usernameVal === "" || gmailVal === "" || passwordVal === "") {
-    alert("Please fill in all fields before continuing!");
-    return;
-  }
+        if (!alertBox) return;
 
-  const alertBox = document.getElementById("screen");
-  if (alertBox) {
-    alertBox.innerHTML = "Logged in Successfully";
-    alertBox.classList.remove("hidden");
-    
-    setTimeout(() => {
-      alertBox.classList.add("hidden");
-    }, 3000);
-  }
-  
+        alertBox.textContent = message;
+        alertBox.classList.remove("hidden");
+
+        window.setTimeout(function () {
+          alertBox.classList.add("hidden");
+        }, 3000);
+      }
+
+      function submitLogin() {
+  if (!validateAuthFields("login-screen")) return;
+
+  alert("Logged in successfully!");
   showStep("mood-screen");
 }
 
 function submitSignup() {
-  const usernameVal = document.getElementById("signup-username").value.trim();
-  const gmailVal = document.getElementById("signup-gmail").value.trim();
-  const passwordVal = document.getElementById("signup-password").value.trim();
+  if (!validateAuthFields("signup-screen")) return;
 
-  if (usernameVal === "" || gmailVal === "" || passwordVal === "") {
-    alert("Please fill in all fields before continuing!");
-    return;
-  }
+  alert("Signed up successfully!");
+  showStep("mood-screen");
+}
 
-  const alertBox = document.getElementById("screen");
-  if (alertBox) {
-    alertBox.innerHTML = "Account Created Successfully!";
-    alertBox.classList.remove("hidden");
-    
-    setTimeout(() => {
-      alertBox.classList.add("hidden");
-    }, 3000);
-  }
-setTimeout(() => {
-  showLogin();
-}, 5000);
-        const alertBox = document.getElementById("screen");
-        alertBox.innerHTML = "Signed up Successfully";
-        alertBox.classList.remove("hidden");
-
-        showStep("mood-screen");
-
-        setTimeout(() => {
-          alertBox.classList.add("hidden");
-        }, 3000);
-      }
 
       function selectChoice(category, button, value) {
         let buttons;
 
         if (category === "mood") {
-          buttons = document.querySelectorAll(
-            "#mood-screen .choice-card"
-          );
-
+          buttons = document.querySelectorAll("#mood-screen .choice-card");
           selectedMood = value;
-
         } else if (category === "style") {
-          buttons = document.querySelectorAll(
-            "#style-screen .style-button"
-          );
-
+          buttons = document.querySelectorAll("#style-screen .style-button");
           selectedStyle = value;
-
         } else if (category === "event") {
-          buttons = document.querySelectorAll(
-            "#event-screen .event-button"
-          );
-
+          buttons = document.querySelectorAll("#event-screen .event-button");
           selectedEvent = value;
-
         } else {
           return;
         }
 
-        buttons.forEach(function(item) {
+        buttons.forEach(function (item) {
           item.classList.remove("selected");
         });
 
@@ -1303,16 +1144,14 @@ setTimeout(() => {
         showStep("event-screen");
       }
 
-        
       function finishSelections() {
         if (selectedEvent === "") {
-          alert("Please Choose an event you're going to!");
+          alert("Please choose an event you're going to!");
           return;
         }
-      
+
         showStep("recommendations-screen");
       }
-
     </script>
   </body>
 </html>
