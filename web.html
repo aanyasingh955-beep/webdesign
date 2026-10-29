@@ -1104,6 +1104,8 @@
 
         categories.forEach(function(category) {
           const piece = selectedOutfit[category.key];
+          console.log("Selected item:", category.key, piece);
+          console.log("Image filename:", piece.image);
           const container = document.getElementById(category.target);
       
           container.replaceChildren();
