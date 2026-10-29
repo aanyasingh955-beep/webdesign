@@ -1236,9 +1236,9 @@ function submitSignup() {
       alertBox.classList.add("hidden");
     }, 3000);
   }
-  
+setTimeout(() => {
   showLogin();
-}
+}, 5000);
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Signed up Successfully";
         alertBox.classList.remove("hidden");
