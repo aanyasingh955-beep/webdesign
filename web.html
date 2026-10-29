@@ -10,7 +10,6 @@
     <link href="https://googleapis.com/css2?family=Alex+Brush&family=Playfair+Display:ital,wght@1,400&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
     
     <style>
-
       #welcome-screen {
         position: fixed;
         top: 0;
@@ -218,33 +217,276 @@
         padding: 4px 8px;
         border-radius: 4px;
       }
+      
+      .step-screen {
+        position: absolute;
+        inset: 0;
+        z-index: 30;
+        background-color: #4A5361;
+        color: #E2E5EB;
+        box-sizing: border-box;
+        padding: 35px 24px 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-y: auto;
+        text-align: center;
+      }
+      .step-lego {
+        font-family: 'Alex Brush', cursive;
+        font-size: 2.7rem;
+        font-weight: 400;
+        margin: 0 0 8px;
+        line-height: 1.3;
+      }
+
+      .step-heading {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        font-weight: 500;
+        margin: 0 0 28px;
+        max-width: 340px;
+      }
+
+      .choice-grid {
+        width: 100%;
+        max-width: 300px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px 22px;
+        justify-items: center;
+      }
+
+      .choice-card {
+        background: transparent;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        color: #C9D8E5;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 4px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        transition: transform 0.15s, border-color 0.15s;
+      }
+
+      .choice-card:active {
+        transform: scale(0.96);
+      }
+
+      .choice-card.selected {
+        border-color: #E2E5EB;
+        background: rgba(255,255,255,0.10);
+      }
+
+      .mood-face {
+        width: 72px;
+        height: 72px;
+        background: #FFFFFF;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        font-size: 2.5rem;
+        flex-shrink: 0;
+        position: relative;
+      }
+
+      .mood-face.bad {
+        background-color: #A98BE9;
+        clip-path: polygon(
+          50% 0%, 60% 12%, 73% 4%, 78% 18%, 93% 17%, 91% 32%, 100% 42%, 90% 52%, 97% 66%, 82% 72%, 83% 88%, 67% 87%, 57% 100%, 47% 89%, 33% 96%, 27% 82%, 12% 83%, 15% 67%, 0 59%, 10% 47%, 3% 34%, 18% 29%, 15% 13%, 31% 16%, 40% 3%
+          );
+      }
+
+      .mood-face.meh {
+        background-color: #A8AED4;
+        clip-path: polygon(
+          50% 0%, 60% 12%, 73% 4%, 78% 18%, 93% 17%, 91% 32%, 100% 42%, 90% 52%, 97% 66%, 82% 72%, 83% 88%, 67% 87%, 57% 100%, 47% 89%, 33% 96%, 27% 82%, 12% 83%, 15% 67%, 0 59%, 10% 47%, 3% 34%, 18% 29%, 15% 13%, 31% 16%, 40% 3%
+          );
+      }
+
+      .mood-face.okay {
+        background-color: #8FD0ED;
+        border-radius: 50%;
+      }
+
+      .mood-face.good {
+        background-color: #F5C568;
+        border-radius: 50%;
+      }
+
+      .mood-face.great {
+        background-color: #F2A85F;
+        border-radius: 50%;
+      }
+
+      .mood-face .eyes {
+        position: absolute;
+        top: 25px;
+        display: flex;
+        justify-content: space-between;
+        width: 30px;
+      }
+
+      .mood-face .eyes span {
+        width: 5px;
+        height: 7px;
+        background-color: #172331;
+        border-radius: 50%;
+      }
+
+      .mood-face .mouth {
+        position: absolute;
+        top: 43px;
+        width: 20px;
+        height: 9px;
+        border-top: 4px solid #172331;
+        border-radius: 50% 50% 0 0;
+      }
+
+      .mood-face.okay .mouth,
+      .mood-face.meh .mouth {
+        top: 43px;
+        width: 20px;
+        height: 4px;
+        border: none;
+        border-radius: 3px;
+        background-color: #172331;
+      }
+
+      .mood-face.good .mouth,
+      .mood-face.great .mouth {
+        top: 38px;
+        width: 23px;
+        height: 12px;
+        border: none;
+        background-color: #172331;
+        border-radius: 4px 4px 15px 15px;
+      }
+
+      .mood-face.great .mouth {
+        width: 28px;
+        height: 16px;
+      }
+
+      .step-continue {
+        width: 100%;
+        max-width: 270px;
+        padding: 10px 16px;
+        margin-top: auto;
+        background-color: #14232E;
+        color: #E2E5EB;
+        border: none;
+        border-radius: 18px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.1rem;
+        cursor: pointer;
+      }
+
+      .step-continue.active {
+        transform: scale(0.98);
+      }
+
+      .style-options {
+        width: 100%;
+        max-width: 270px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin: 0 auto;
+      }
+
+      .style-button {
+        width: 100%;
+        padding: 9px 12px;
+        background-color: #718BA6;
+        color: #F1F5F9;
+        border: 2px solid transparent;
+        border-radius: 18px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: background-color 0.15s, border-color 0.15s;
+      }
+
+      .style-button.selected {
+        background-color: #8CA4BD;
+        border-color: #E2E5EB;
+      }
+
+      .event-options {
+        width: 100%;
+        max-width: 270px;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+        margin: 0 auto;
+      }
+
+      .event-button {
+        width: 100%;
+        padding: 9px 12px;
+        background-color: #718BA6;
+        color: #F1F5F9;
+        border: 2px solid transparent;
+        border-radius: 18px;
+        font-family: 'Orbitron', sans-serif;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: background-color 0.15s, border-color 0.15s;
+      }
+
+      .event-button.selected {
+        background-color: #8CA4BD;
+        border-color: #E2E5EB;
+      }
+
+      @media (max-width: 360px) {
+        .step-screen {
+          padding: 25px 18px 24px;
+        }
+
+        .step-lego {
+          font-size: 2.4rem;
+        }
+
+        .choice-grid {
+          gap: 12px 14px;
+        }
+
+        .mood-face {
+          width: 64px;
+          height: 64px;
+        }
+
+        .choice-card {
+          font-size: 0.9rem;
+        }
+      }
     </style>
   </head>
   <body>
-
     <div id="welcome-screen">
       <div class="screen-content">
         <h1 class="logo-text">Fitcheck</h1>
         <p class="logo-text">Outfits made easy</p>
       </div>
     </div>
-
-
     <div id="main-content">
-      
-
       <h2 class="main-brand-title">FitCheck</h2>
-      
-
       <div id="menu-buttons-view" class="auth-button-group">
         <button class="custom-btn" onclick="showLogin()">Log In</button>
         <button class="custom-btn" onclick="showSignup()">Sign up</button>
       </div>
-
-
       <div id="login-screen" class="form-panel hidden">
         <div class="form-subheading">Log In</div>
-        
         <div class="input-container">
           <div class="input-field-wrapper">
             <label class="input-label">Username:</label>
@@ -292,10 +534,148 @@
       
 
       <div id="screen" class="hidden"></div>
+      <div id="mood-screen" class="step-screen hidden">
+        <h1 class="step-lego">FitCheck</h1>
+        <h2 class="step-heading">
+          How are you feeling today?
+        </h2>
+        <div class="choice-grid">
+          <button class="choice-card"
+                  onclick="selectChoice('mood', this, 'Bad')">
+            <div class="mood-face bad">
+              <div class="eyes">
+                <span></span><span></span>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <span>Bad</span>
+          </button>
+
+          <button class="choice-card"
+                  onclick="selectChoice('mood', this, 'Meh')">
+            <div class="mood-face meh">
+              <div class="eyes">
+                <span></span><span></span>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <span>Meh</span>
+          </button>
+
+          <button class="choice-card"
+                  onclick="selectChoice('mood', this, 'Okay')">
+            <div class="mood-face okay">
+              <div class ="eyes">
+                <span></span><span></span>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <span>Okay</span>
+          </button>
+
+          <button class="choice-card"
+                  onclick="selectChoice('mood', this, 'Good')">
+            <div class="mood-face good">
+              <div class="eyes">
+                <span></span><span></span>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <span>Good</span>
+          </button>
+
+          <button class="choice-card"
+                  onclick="selectChoice('mood', this, 'Great')">
+            <div class="mood-face great">
+              <div class="eyes">
+                <span></span><span></span>
+              </div>
+              <div class="mouth"></div>
+            </div>
+            <span>Great</span>
+          </button>
+        </div>
+
+        <button class="step-continue"
+                onclick="continueToStyle()">
+          CONTINUE
+        </button>
+      </div>
+
+      <div id="style-screen" class="step-screen hidden">
+        <h1 class="step-lego">FitCheck</h1>
+        <h2 class="step-heading">
+          What type of clothing would you like?
+        </h2>
+
+        <div class="style-options">
+          <button class="style-button"
+                  onclick="selectChoice('style', this, 'Masculine')">
+            Masculine
+          </button>
+          <button class="style-button"
+                  onclick="selectChoice('style', this, 'Androgynous')">
+            Androgynous
+          </button>
+          <button class="style-button"
+                  onclick="selectChoice('style', this, 'Feminine')">
+            Feminine
+          </button>
+          <button class="style-button"
+                  onclick="selectChoice('style', this, 'Any')">
+            Any
+          </button>
+        </div>
+        <button class="step-continue"
+                onclick="continueToEvent()">
+          CONTINUE
+        </button>
+
+        <button class="step-continue"
+                style="margin-top: 12px;"
+                onclick="showStep('mood-screen')">
+          BACK
+        </button>
+      </div>
+      <div id="event-screen" class="step-screen hidden">
+        <h1 class="step-lego">Fitcheck</h1>
+        <h2 class="step-heading">
+          What event are you going to?
+        </h2>
+        <div class="event-options">
+          <button class="event-button"
+                  onclick="selectChoice('event', this, 'Funeral')">
+            Funeral
+          </button>
+          <button class="event-button"
+                  onclick="selectChoice('event', this, 'Wedding')">
+            Wedding
+          </button>
+          <button class="event-button"
+                  onclick="selectChoice('event', this, 'Casual meetup')">
+            Casual meetup
+          </button>
+          <button class="event-button"
+                  onclick="selectChoice('event', this, 'Office meeting')">
+            Office meeting
+          </button>
+          <button class="event-button"
+                  onclick="selectChoice('event', this, 'Date')">
+            Date
+          </button>
+        </div>
+        <button class="step-continue"
+                onclick="finishSelections()">
+          CONTINUE
+        </button>
+        <button class="step-continue"
+                style="margin-top: 12px;"
+                onclick="showStep('style-screen')">
+          BACK
+        </button>
+      </div>
     </div>
-
     <script>
-
       setTimeout(() => {
         const welcomeScreen = document.getElementById('welcome-screen');
         if (welcomeScreen) {
@@ -318,20 +698,111 @@
         document.getElementById("signup-screen").classList.remove("hidden");
       }
 
+      let selectedMood = "";
+      let selectedStyle = "";
+      let selectedEvent = "";
 
+      function showStep(screenId) {
+        document.getElementById("login-screen").classList.add("hidden");
+        document.getElementById("signup-screen").classList.add("hidden");
+
+        document.getElementById("mood-screen").classList.add("hidden");
+        document.getElementById("style-screen").classList.add("hidden");
+        
+        document.getElementById("event-screen").classList.add("hidden");
+        document.getElementById(screenId).classList.remove("hidden");
+      }
+      
       function submitLogin() {
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Logged in Successfully";
         alertBox.classList.remove("hidden");
-        setTimeout(() => alertBox.classList.add("hidden"), 3000);
+
+        showStep("mood-screen");
+        
+        setTimeout(() => {
+          alertBox.classList.add("hidden");
+        }, 3000);
       }
 
       function submitSignup() {
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Signed up Successfully";
         alertBox.classList.remove("hidden");
-        setTimeout(() => alertBox.classList.add("hidden"), 3000);
+
+        showStep("mood-screen");
+        
+        setTimeout(() => {
+          alertBox.classList.add("hidden");
+        }, 3000);
       }
+
+      function selectChoice(category, button, value) {
+        let buttons;
+
+        if (category === "mood") {
+          buttons = document.querySelectorAll(
+            "#mood-screen .choice-card"
+          );
+
+          selectedMood = value;
+
+        } else if (category === "style") {
+          buttons = document.querySelectorAll(
+            "#style-screen .style-button"
+          );
+
+          selectedStyle = value;
+
+        } else if (category === "event") {
+          buttons = document.querySelectorAll(
+            "#event-screen .event-button"
+          );
+
+          selectedEvent = value;
+
+        } else {
+          return;
+        }
+
+        buttons.forEach(function(item) {
+          item.classList.remove("selected");
+        });
+
+        button.classList.add("selected");
+      }
+
+      function continueToStyle() {
+        if (selectedMood === "") {
+          alert("Please choose how you're feeling today!");
+          return;
+        }
+
+        showStep("style-screen");
+      }
+
+      function continueToEvent() {
+        if (selectedStyle === "") {
+          alert("Please choose what type of clothing you would like!");
+          return;
+        }
+
+        showStep("event-screen");
+      }
+
+        function finishSelections() {
+          if (selectedEvent === "") {
+            alert("Please Choose an event you're going to!");
+            return;
+          }
+
+          alert(
+            "Your Fitcheck choices:\n\n" +
+            "Mood: " + selectedMood + "\n" +
+            "Clothing style: " + selectedStyle + "\n" +
+            "Event: " + selectedEvent
+          );
+        }
     </script>
   </body>
 </html>
