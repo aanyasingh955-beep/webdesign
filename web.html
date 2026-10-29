@@ -712,26 +712,59 @@
         document.getElementById("event-screen").classList.add("hidden");
         document.getElementById(screenId).classList.remove("hidden");
       }
-      
+
+      function validateAuthFields(screenId) {
+        const inputs = document.querySelectorAll(
+          `#${screenId} .form-input`
+        );
+
+        for (const input of inputs) {
+          if (input.value.trim() === "") {
+            alert("Please fill in all fields before continuing!");
+            input.focus();
+            return false;
+          }
+
+          if (
+            input.type === "email" &&
+            !input.checkValidity()
+          ) {
+            alert("Please enter a valid email address!");
+            input.focus();
+            return false;
+          }
+        }
+
+        return true;
+      }
+
       function submitLogin() {
+        if (!validateAuthFields("login-screen")) {
+          return;
+        }
+
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Logged in Successfully";
         alertBox.classList.remove("hidden");
 
         showStep("mood-screen");
-        
+
         setTimeout(() => {
           alertBox.classList.add("hidden");
         }, 3000);
       }
 
       function submitSignup() {
+        if (!validateAuthFields("signup-screen")) {
+          return;
+        }
+
         const alertBox = document.getElementById("screen");
         alertBox.innerHTML = "Signed up Successfully";
         alertBox.classList.remove("hidden");
 
         showStep("mood-screen");
-        
+
         setTimeout(() => {
           alertBox.classList.add("hidden");
         }, 3000);
